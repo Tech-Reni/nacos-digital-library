@@ -1,0 +1,23 @@
+# .htaccess
+
+# Disable directory listing globally
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Prevent direct URL access to includes directory
+    RewriteRule ^includes/(.*)$ -
+
+    # Prevent direct URL access to the protected PDFs folder (Anti-Download)
+    RewriteRule ^uploads/protected_books/(.*)$ -
+
+    # Prevent access to temp upload files
+    RewriteRule ^upload/temp/(.*)$ -
+</IfModule>
+
+# Protect sensitive files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>cd C

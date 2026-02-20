@@ -1,0 +1,11 @@
+# .gitignore
+/vendor/
+/node_modules/
+.env
+.DS_Store
+Thumbs.db
+
+# Do not track uploaded raw images or protected PDFs
+/uploads/protected_books/*
+/upload/temp/*
+!/uploads/protected_books/index.php
