@@ -7,24 +7,24 @@ CREATE DATABASE IF NOT EXISTS nacos_library
 USE nacos_library;
 
 -- 1. USERS
-CREATE TABLE IF NOT EXISTS users (
-  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  uuid CHAR(36) NOT NULL UNIQUE,
-  fullname VARCHAR(150) NOT NULL,
-  matric_number VARCHAR(64) NOT NULL UNIQUE,
-  department VARCHAR(100) NOT NULL,
-  level ENUM('ND1','ND2','ND3','HND1','HND2','HND3') NOT NULL,
-  programme ENUM('Full-time','Part-time','CODFEL') NOT NULL,
-  password_hash VARCHAR(255) NOT NULL,
-  role ENUM('student','course_rep','governor','admin') NOT NULL DEFAULT 'student',
-  is_verified BOOLEAN NOT NULL DEFAULT FALSE,
-  failed_logins SMALLINT UNSIGNED NOT NULL DEFAULT 0,
-  last_login DATETIME DEFAULT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  INDEX idx_users_department (department),
-  INDEX idx_users_role (role)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CREATE TABLE IF NOT EXISTS users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    uuid CHAR(36) NOT NULL UNIQUE,
+    fullname VARCHAR(150) NOT NULL,
+    matric_number VARCHAR(64) NOT NULL UNIQUE,
+    department VARCHAR(100) NOT NULL,
+    level ENUM('ND1','ND2','ND3','HND1','HND2','HND3') NOT NULL,
+    programme ENUM('Full-time','Part-time','CODFEL') NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('student','course_rep','governor','admin') NOT NULL DEFAULT 'student',
+    is_verified BOOLEAN NOT NULL DEFAULT FALSE,
+    failed_logins SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+    last_login DATETIME DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_users_department (department),
+    INDEX idx_users_role (role)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 2. UPLOAD SESSIONS
 CREATE TABLE IF NOT EXISTS upload_sessions (

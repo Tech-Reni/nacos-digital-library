@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-green: #0b8f3a;
+    --primary-yellow: #ffcc00;
+    --dark-green: #066b2a;
+    --light-green: #1fb04e;
+    --light-bg: #f4fff7;
+    --danger: #e63946;
+    --danger-light: #ff6b6b;
+    --success: #2a9d8f;
+    --text-dark: #222;
+    --text-secondary: #666;
+    --white: #fff;
+    --border-gray: #ddd;
+    --focus-shadow: 0 0 0 3px rgba(11, 143, 58, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-yellow) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.auth-wrapper {
+    width: 100%;
+    max-width: 450px;
+}
+
+.auth-box {
+    background: var(--white);
+    padding: 45px;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.6s ease-out;
+}
+
+.auth-box h2 {
+    text-align: center;
+    color: var(--primary-green);
+    margin: 0 0 10px 0;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.auth-box .subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-group.has-error input,
+.form-group.has-error select {
+    border-color: var(--danger) !important;
+    background-color: rgba(230, 57, 70, 0.05);
+}
+
+.form-group.is-valid input,
+.form-group.is-valid select {
+    border-color: var(--success) !important;
+    background-color: rgba(42, 157, 143, 0.05);
+}
+
+.auth-box input,
+.auth-box select {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 8px;
+    margin-top: 12px;
+    border: 2px solid var(--border-gray);
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: var(--white);
+    color: var(--text-dark);
+}
+
+.auth-box input::placeholder {
+    color: #aaa;
+}
+
+.auth-box input:focus,
+.auth-box select:focus {
+    border-color: var(--primary-green);
+    outline: none;
+    box-shadow: var(--focus-shadow);
+    background-color: var(--white);
+}
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    padding-right: 45px;
+    width: 100%;
+}
+
+.toggle-eye {
+    position: absolute;
+    right: 14px;
+    top: 60%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.toggle-eye:hover {
+    color: var(--primary-green);
+    background-color: rgba(11, 143, 58, 0.08);
+}
+
+.field-error {
+    color: var(--danger);
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+    font-weight: 500;
+}
+
+.field-error.show {
+    display: block;
+}
+
+.field-success {
+    color: var(--success);
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+    font-weight: 500;
+}
+
+.field-success.show {
+    display: block;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: var(--dark-green);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(11, 143, 58, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.alert {
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-left: 4px solid;
+    animation: slideIn 0.3s ease;
+}
+
+.alert.error {
+    background: #ffe5e5;
+    color: var(--danger);
+    border-left-color: var(--danger);
+}
+
+.alert.success {
+    background: #e6fff3;
+    color: var(--success);
+    border-left-color: var(--success);
+}
+
+.alert.info {
+    background: #e3f2fd;
+    color: #1976d2;
+    border-left-color: #1976d2;
+}
+
+.switch-link {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.switch-link a {
+    color: var(--primary-green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.switch-link a:hover {
+    color: var(--dark-green);
+    text-decoration: underline;
+}
+
+/* Auth logo sizing and positioning */
+.auth-logo {
+    display: block;
+    margin: 0 auto 14px auto;
+    width: 120px;
+    max-width: 40%;
+    height: auto;
+}
+
+/* Small helper for forgot password link */
+.forgot-link {
+    text-align: right;
+    margin-top: 8px;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.forgot-link a {
+    color: var(--primary-green);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.forgot-link a:hover {
+    color: var(--dark-green);
+    text-decoration: underline;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .auth-box {
+        padding: 30px 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .auth-box h2 {
+        font-size: 24px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
