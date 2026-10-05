@@ -36,10 +36,12 @@ if ((getenv('APP_ENV') ?: 'local') === 'production' && !$isHttps) {
 }
 
 // 2. CONFIGURATION
-$servername = getenv('DB_SERVER') ?: 'mysql.nacosyabatech.com';
-$username   = getenv('DB_USERNAME') ?: 'nacos_db';
-$password   = getenv('DB_PASSWORD') ?: 'Programming1234$';
-$dbname     = getenv('DB_NAME') ?: 'nacos_app_db';
+// Credentials are read from .env only. The hardcoded production fallbacks that
+// used to live here were removed; that password must be rotated on the host.
+$servername = getenv('DB_SERVER') ?: '127.0.0.1';
+$username   = getenv('DB_USERNAME') ?: '';
+$password   = getenv('DB_PASSWORD') ?: '';
+$dbname     = getenv('DB_NAME') ?: '';
 $BASE_URL   = getenv('BASE_URL') ?: '/';
 
 // Global variables for convenience (Phase 15 - Code Quality)

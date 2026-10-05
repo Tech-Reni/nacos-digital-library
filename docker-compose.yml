@@ -1,0 +1,64 @@
+# Local development stack. Start with: docker compose up -d
+#   App:     http://localhost:8080
+#   Mailpit: http://localhost:8025 (catches all outgoing email)
+#   MySQL:   localhost:33060 (user nacos / secret)
+services:
+  app:
+    build: docker/app
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_DATABASE: nacos
+      DB_USERNAME: nacos
+      DB_PASSWORD: secret
+      MAIL_HOST: mailpit
+      MAIL_PORT: 1025
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # Mirrors the production cron (`schedule:run` every minute), which also
+  # drains the job queue.
+  scheduler:
+    build: docker/app
+    command: ["php", "artisan", "schedule:work"]
+    volumes:
+      - .:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_DATABASE: nacos
+      DB_USERNAME: nacos
+      DB_PASSWORD: secret
+      MAIL_HOST: mailpit
+      MAIL_PORT: 1025
+    depends_on:
+      app:
+        condition: service_started
+
+  db:
+    image: mysql:8.0
+    ports:
+      - "33060:3306"
+    environment:
+      MYSQL_DATABASE: nacos
+      MYSQL_USER: nacos
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "8025:8025"
+
+volumes:
+  db-data:

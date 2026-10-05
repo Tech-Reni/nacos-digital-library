@@ -1,11 +1,24 @@
-# .gitignore
-/vendor/
-/node_modules/
-.env
+*.log
 .DS_Store
+.env
+.env.backup
+.env.production
+.phpactor.json
+.phpunit.result.cache
+/.fleet
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+Homestead.json
+Homestead.yaml
 Thumbs.db
-
-# Do not track uploaded raw images or protected PDFs
-/uploads/protected_books/*
-/upload/temp/*
-!/uploads/protected_books/index.php
